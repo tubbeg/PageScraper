@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PageScraper.Models;
+using WebScraperApp;
 
 namespace PageScraper.Controllers
 {
@@ -21,6 +22,18 @@ namespace PageScraper.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        // GET api/authors/about
+        // GET: api/authors
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var scraper = new WebScraper();
+            var res = await scraper.Scrape("https://old.reddit.com/r/all");
+            scraper.LoadDocument(res);
+            var list = scraper.GetAllImageSources();
+            return Ok(list);
         }
 
         public IActionResult Privacy()
