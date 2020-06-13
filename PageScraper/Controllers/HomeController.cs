@@ -24,8 +24,7 @@ namespace PageScraper.Controllers
             return View();
         }
 
-        // GET api/authors/about
-        // GET: api/authors
+        /*
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -34,7 +33,7 @@ namespace PageScraper.Controllers
             scraper.LoadDocument(res);
             var list = scraper.GetAllImageSources();
             return Ok(list);
-        }
+        }*/
 
         public IActionResult Privacy()
         {
