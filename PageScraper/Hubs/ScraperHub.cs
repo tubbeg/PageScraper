@@ -12,5 +12,10 @@ namespace PageScraper.Hubs
         {
 
         }
+
+        public async Task ReceiveUrl(string pageUrl)
+        {
+            await Clients.All.SendAsync("ScrapeResult", pageUrl);
+        }
     }
 }
