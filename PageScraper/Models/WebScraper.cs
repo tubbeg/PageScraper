@@ -12,6 +12,7 @@ namespace WebScraperApp
 {
     class WebScraper : IWebScraper
     {
+        //https://stackoverflow.com/questions/33014188/httpclient-never-sends-request-on-iis/33036085
         private HttpClient _client;
         private HtmlDocument _htmlDocument;
 
