@@ -15,13 +15,19 @@ namespace PageScraper.Hubs
 
         public async Task ReceiveUrl(string pageUrl)
         {
-            /*
+            //int x = 0;
+            //Int32.TryParse(indexMessage, out x);
             var scraper = new WebScraper();
             var res = await scraper.Scrape(pageUrl);
             scraper.LoadDocument(res);
             var list = scraper.GetAllImageSources();
-            await Clients.All.SendAsync("ScrapeResult", pageUrl);*/
-            await Clients.All.SendAsync("ScrapeResult", pageUrl);
+            var item = list.First();
+            //var item = list.ElementAt(new Random().Next(0, 100));
+            /*foreach(string s in list)
+            {
+                await Clients.All.SendAsync("ScrapeResult", s);
+            }*/
+            await Clients.All.SendAsync("ScrapeResult", item);
         }
     }
 }
