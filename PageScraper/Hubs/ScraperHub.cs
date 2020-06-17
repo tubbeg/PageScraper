@@ -13,7 +13,7 @@ namespace PageScraper.Hubs
         {
         }
 
-        public async Task ReceiveUrl(string pageUrl)
+        /*public async Task ReceiveUrl(string pageUrl)
         {
             //int x = 0;
             //Int32.TryParse(indexMessage, out x);
@@ -26,7 +26,19 @@ namespace PageScraper.Hubs
             /*foreach(string s in list)
             {
                 await Clients.All.SendAsync("ScrapeResult", s);
-            }*/
+            }
+            await Clients.All.SendAsync("ScrapeResult", item);
+
+
+        }*/
+
+        public async Task ReceiveUrl(string pageUrl)
+        {
+            var scraper = new WebScraper();
+            var res = await scraper.Scrape(pageUrl);
+            scraper.LoadDocument(res);
+            var list = scraper.GetAllImageSources();
+            var item = list.First();
             await Clients.All.SendAsync("ScrapeResult", item);
         }
     }
